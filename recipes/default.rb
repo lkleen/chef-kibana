@@ -1,28 +1,34 @@
 package 'git'
 
-group node['kibana']['group'] do
+kibana_group = node['kibana']['group']
+kibana_user  = node['kibana']['user']
+kibana_directories = node['kibana']['dir']
+
+group kibana_group do
 end
 
-user node['kibana']['user'] do
+user kibana_user do
   comment 'Kibana Server'
   gid node['kibana']['group']
-  home node['kibana']['base_dir']
+  home node['kibana']['dir']['root']
   shell '/bin/bash'
   system true
 end
 
-directory node['kibana']['base_dir'] do
-  mode '0700'
-  owner node['kibana']['user']
-  group node['kibana']['group']
-  recursive true
+kibana_directories.values.each do |dir|
+  directory dir do
+    mode 00700
+    owner kibana_user
+    group kibana_group
+    recursive true
+  end
 end
 
-git node['kibana']['base_dir'] do
+git kibana_directories['root'] do
   repository node['kibana']['git']['url']
   reference node['kibana']['git']['reference']
-  user node['kibana']['user']
-  group node['kibana']['group']
+  user kibana_user
+  group kibana_group
   action :checkout
 end
 
@@ -35,7 +41,7 @@ end
 include_recipe 'build-essential::default'
 
 bash 'kibana bundle install' do
-  cwd node['kibana']['base_dir']
+  cwd kibana_directories['root']
   code 'bundle install'
 end
 
@@ -50,10 +56,10 @@ template '/etc/init.d/kibana' do
   notifies :restart, 'service[kibana]', :delayed
 end
 
-template "#{node['kibana']['base_dir']}/KibanaConfig.rb" do
+template "#{kibana_directories['root']}/KibanaConfig.rb" do
   source 'KibanaConfig.rb.erb'
-  user node['kibana']['user']
-  group node['kibana']['group']
+  user kibana_user
+  group kibana_group
   mode 00600
   notifies :restart, 'service[kibana]', :delayed
 end
