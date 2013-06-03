@@ -18,8 +18,13 @@ case "$1" in
         ruby -C/opt/kibana kibana-daemon.rb restart
         exit $?
         ;;
+    status)
+        ruby -C/opt/kibana kibana-daemon.rb status
+        exit $?
+        ;;
+
     *)
-        echo "Usage: /etc/init.d/kibana {start|stop|restart}"
+        echo "Usage: /etc/init.d/kibana {start|stop|restart|status}"
         exit 1
         ;;
 esac
