@@ -7,16 +7,13 @@
 
 case "$1" in
     start)
-        ruby -C/opt/kibana kibana-daemon.rb start
-        exit $?
+        ruby -C/opt/kibana kibana.rb
         ;;
     stop)
-        ruby -C/opt/kibana kibana-daemon.rb stop
-        exit $?
+        exit 1
         ;;
     restart)
-        ruby -C/opt/kibana kibana-daemon.rb restart
-        exit $?
+        exit 1
         ;;
     *)
         echo "Usage: /etc/init.d/kibana {start|stop|restart}"
