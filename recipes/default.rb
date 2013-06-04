@@ -19,7 +19,7 @@ group kibana_group do
 end
 
 directory kibana_path_base do
-  mode '0700'
+  mode 00700
   owner kibana_user
   group kibana_group
   recursive true
@@ -46,6 +46,7 @@ end
 kibana_bundle kibana_path_base do
   user kibana_user
   group kibana_group
+  path "#{kibana_path_base}/bundle"
   action :install
 end
 
