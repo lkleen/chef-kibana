@@ -3,11 +3,8 @@ action :install do
   cwd   = new_resource.name
   group = new_resource.group
   user  = new_resource.user
-  path  = new_resource.path
 
-  command = 'bundle install --verbose'
-  command += path.nil? ? '' : " --path=#{path}"
-
+  command = "bundle install --verbose --deployment"
 
   Chef::Log.debug "group #{group}"
   Chef::Log.debug "cwd #{cwd}"

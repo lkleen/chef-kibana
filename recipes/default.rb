@@ -46,7 +46,6 @@ end
 kibana_bundle kibana_path_base do
   user kibana_user
   group kibana_group
-  path "#{kibana_path_base}/bundle"
   action :install
 end
 

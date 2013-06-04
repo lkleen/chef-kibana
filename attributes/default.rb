@@ -1,8 +1,8 @@
 default['kibana']['path']['base'] = '/opt/kibana'
 default['kibana']['user'] = 'kibana'
 default['kibana']['group'] = 'kibana'
-default['kibana']['git']['url'] = 'https://github.com/rashidkpc/Kibana.git'
-default['kibana']['git']['reference'] = 'v0.2.0'
+default['kibana']['git']['url'] = 'git@github.com:lkleen/Kibana.git'
+default['kibana']['git']['reference'] = 'v0.2.1'
 default['kibana']['interface'] = '0.0.0.0'
 default['kibana']['port'] = 5601
 default['kibana']['elasticsearch']['host'] = '127.0.0.1'
