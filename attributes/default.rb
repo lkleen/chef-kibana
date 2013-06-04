@@ -1,5 +1,4 @@
-default['kibana']['base_dir'] = '/opt/kibana'
-default['kibana']['path']['tmp'] = '/opt/kibana/tmp'
+default['kibana']['path']['base'] = '/opt/kibana'
 default['kibana']['user'] = 'kibana'
 default['kibana']['group'] = 'kibana'
 default['kibana']['git']['url'] = 'https://github.com/rashidkpc/Kibana.git'
