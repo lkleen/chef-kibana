@@ -12,12 +12,11 @@ action :install do
       'bundle install --verbose',
       :cwd => path,
       :group => group,
-      :user => user
+      :user => user,
+      :live_stream => STDOUT
   )
   cmd.run_command
 
-  Chef::Log.debug "STATUS #{cmd.error!}"
-  Chef::Log.debug "BUNDLER OUTPUT: #{cmd.stdout}"
+  Chef::Log.debug "STDERR: #{cmd.stderr}"
 
-  #raise RuntimeError, "The repository file to create is nil, cannot continue." if @repo_file.nil?
 end

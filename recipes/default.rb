@@ -44,8 +44,8 @@ template '/etc/init.d/kibana' do
 end
 
 kibana_bundle kibana_path_base do
-  user 'root'
-  group 'root'
+  user kibana_user
+  group kibana_group
   action :install
 end
 
