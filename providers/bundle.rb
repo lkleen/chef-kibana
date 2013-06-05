@@ -4,7 +4,7 @@ action :install do
   group = new_resource.group
   user  = new_resource.user
 
-  command = "bundle install --verbose --deployment"
+  command = "bundle install --verbose"
 
   Chef::Log.debug "group #{group}"
   Chef::Log.debug "cwd #{cwd}"
@@ -17,6 +17,9 @@ action :install do
       :user => user,
       :live_stream => STDOUT
   )
+  cmd.run_command
+  cmd.error!
+
   cmd.run_command
   cmd.error!
 

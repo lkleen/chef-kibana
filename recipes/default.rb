@@ -8,15 +8,18 @@ kibana_group     = node['kibana']['group']
 kibana_user      = node['kibana']['user']
 kibana_path_base = node['kibana']['path']['base']
 
-user kibana_user do
-  comment 'Kibana Server'
-  home kibana_path_base
-  shell '/bin/bash'
-end
+# currently only the root user is supported
+# bundler fucks up my attempts to change it
 
-group kibana_group do
-  members [kibana_user]
-end
+#user kibana_user do
+#  comment 'Kibana Server'
+#  home kibana_path_base
+#  shell '/bin/bash'
+#end
+
+#group kibana_group do
+#  members [kibana_user]
+#end
 
 directory kibana_path_base do
   mode 00700

@@ -15,7 +15,8 @@ case "$1" in
         exit $?
         ;;
     restart)
-        ruby -C/opt/kibana kibana-daemon.rb restart
+        ruby -C/opt/kibana kibana-daemon.rb stop
+        ruby -C/opt/kibana kibana-daemon.rb start
         exit $?
         ;;
     status)
