@@ -8,14 +8,22 @@ action :install do
   Chef::Log.debug "cwd #{cwd}"
   Chef::Log.debug "user #{user}"
 
-  ENV['GEM_HOME'] = "/usr/local/rvm/gems/ruby-1.9.3-p429"
-  ENV['GEM_PATH'] = "/usr/local/rvm/gems/ruby-1.9.3-p429:/usr/local/rvm/gems/ruby-1.9.3-p429@global;"
+  ENV['GEM_HOME'] = "/usr/local/rvm/gems/ruby-1.9.3-p429;/usr/local/rvm/gems/ruby-1.9.3-p429@global"
+  ENV['GEM_PATH'] = "/usr/local/rvm/gems/ruby-1.9.3-p429:/usr/local/rvm/gems/ruby-1.9.3-p429@global"
 
-  shellExec('gem install bundler', cwd, 'root', 'root')
+  commands = [
+      "gem install bundler",
+      "/usr/local/rvm/bin/rvm --default 1.9.3",
+      "/usr/local/rvm/bin/rvm alias create default 1.9.3"
+  ]
+
+  commands.each do |command|
+    shellExecRoot(command, cwd)
+  end
 
   commands = [
       "echo \"installing bundles to $GEM_HOME\"",
-      "bundle install"
+      "bundle install",
   ]
 
   commands.each do |command|
@@ -24,6 +32,9 @@ action :install do
 
 end
 
+def shellExecRoot(command, cwd)
+  shellExec(command, cwd, 'root', 'root')
+end
 
 def shellExec(command, cwd, user, group)
   Chef::Log.debug "executing command #{command}"
