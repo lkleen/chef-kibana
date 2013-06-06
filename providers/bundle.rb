@@ -8,10 +8,12 @@ action :install do
   Chef::Log.debug "cwd #{cwd}"
   Chef::Log.debug "user #{user}"
 
+  ENV['GEM_HOME'] = "/usr/local/rvm/gems/ruby-1.9.3-p429"
+  ENV['GEM_PATH'] = "/usr/local/rvm/gems/ruby-1.9.3-p429:/usr/local/rvm/gems/ruby-1.9.3-p429@global;"
+
+  shellExec('gem install bundler', cwd, 'root', 'root')
+
   commands = [
-      "gem install bundler",
-      "export GEM_HOME=\"/usr/local/rvm/gems/ruby-1.9.3-p429\"",
-      "export GEM_PATH=\"/usr/local/rvm/gems/ruby-1.9.3-p429:/usr/local/rvm/gems/ruby-1.9.3-p429@global;\"",
       "echo \"installing bundles to $GEM_HOME\"",
       "bundle install"
   ]
@@ -24,7 +26,7 @@ end
 
 
 def shellExec(command, cwd, user, group)
-  Chef::Log.debug "execution command #{command}"
+  Chef::Log.debug "executing command #{command}"
 
   cmd = Mixlib::ShellOut.new(
       command,

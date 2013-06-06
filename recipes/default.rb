@@ -11,15 +11,29 @@ kibana_path_base = node['kibana']['path']['base']
 # currently only the root user is supported
 # bundler fucks up my attempts to change it
 
-#user kibana_user do
-#  comment 'Kibana Server'
-#  home kibana_path_base
-#  shell '/bin/bash'
-#end
+user kibana_user do
+  comment 'Kibana Server'
+  home kibana_path_base
+  shell '/bin/bash'
+end
 
-#group kibana_group do
-#  members [kibana_user]
-#end
+groups = [
+    kibana_group,
+    'rvm',
+    'root'
+]
+
+groups.each do |group|
+  group group do
+    members [kibana_user]
+    append true
+  end
+end
+
+directory "/root" do
+  mode 00770
+  recursive true
+end
 
 directory kibana_path_base do
   mode 00700
