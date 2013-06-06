@@ -8,15 +8,6 @@ kibana_group     = node['kibana']['group']
 kibana_user      = node['kibana']['user']
 kibana_path_base = node['kibana']['path']['base']
 
-# currently only the root user is supported
-# bundler fucks up my attempts to change it
-
-user kibana_user do
-  comment 'Kibana Server'
-  home kibana_path_base
-  shell '/bin/bash'
-end
-
 groups = [
     kibana_group,
     'rvm',
@@ -52,6 +43,8 @@ end
 
 template '/etc/init.d/kibana' do
   source 'kibana.init.erb'
+  user kibana_user
+  group kibana_group
   mode 00755
   notifies :restart, 'service[kibana]', :delayed
 end

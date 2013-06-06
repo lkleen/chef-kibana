@@ -1,5 +1,5 @@
-# until I can fix the bundler installation kibana will not work
-# if it is not running as root
+# currently only the root user is supported
+# since ruby don't want me to change it easily
 default['kibana']['user'] = 'root'
 default['kibana']['group'] = 'root'
 
@@ -10,6 +10,6 @@ default['kibana']['interface'] = '0.0.0.0'
 default['kibana']['port'] = 5601
 default['kibana']['elasticsearch']['host'] = '127.0.0.1'
 default['kibana']['elasticsearch']['port'] = 9200
-default['kibana']['rubyversion'] = '1.9.2'
+default['kibana']['rubyversion'] = '1.9.3'
 
 
