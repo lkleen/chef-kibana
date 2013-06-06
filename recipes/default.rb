@@ -36,10 +36,6 @@ git kibana_path_base do
   action :checkout
 end
 
-gem_package 'bundler' do
-  action :install
-end
-
 template '/etc/init.d/kibana' do
   source 'kibana.init.erb'
   mode 00755
