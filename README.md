@@ -24,9 +24,6 @@ Attributes
 * `node['kibana']['port']` - The port on which to bind. Defaults to 5601.
 * `node['kibana']['elasticsearch']['host']` - The host of the elasticsearch service. Defaults to '127.0.0.1'.
 * `node['kibana']['elasticsearch']['port']` - The port of the elasticsearch http service. Defaults to 9200.
-* `node['kibana']['apache']['host']` - The host to create apache vhost for. Defaults to `node['fqdn']`
-* `node['kibana']['apache']['interface']` - The interface on which to bind apache. Defaults to `node['ipaddress']`
-* `node['kibana']['apache']['port']` - The port on which to bind apache. Defaults to 80.
 * `node['kibana']['rubyversion']` - The version of Ruby and Gems to use for Kibana.Defaults to `1.9.1`
 
 
@@ -34,4 +31,4 @@ Recipes
 =======
 
 * `default` - Install Kibana.
-* `apache` - Setup vhost for apache that rewrites to Kibana.
+
