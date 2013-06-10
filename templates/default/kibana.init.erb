@@ -6,23 +6,21 @@
 
 case "$1" in
     start)
-        ruby -C/opt/kibana kibana-daemon.rb start
+        /usr/local/rvm/bin/ruby-1.9.3-p327 -C/opt/kibana kibana-service.rb start
         exit $?
         ;;
     stop)
-        ruby -C/opt/kibana kibana-daemon.rb stop
+        /usr/local/rvm/bin/ruby-1.9.3-p327 -C/opt/kibana kibana-service.rb stop
         exit $?
         ;;
     restart)
-        ruby -C/opt/kibana kibana-daemon.rb stop
-        ruby -C/opt/kibana kibana-daemon.rb start
+        /usr/local/rvm/bin/ruby-1.9.3-p327 -C/opt/kibana kibana-service.rb restart
         exit $?
         ;;
     status)
-        ruby -C/opt/kibana kibana-daemon.rb status
+        /usr/local/rvm/bin/ruby-1.9.3-p327 -C/opt/kibana kibana-service.rb status
         exit $?
         ;;
-
     *)
         echo "Usage: /etc/init.d/kibana {start|stop|restart|status}"
         exit 1

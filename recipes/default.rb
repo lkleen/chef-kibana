@@ -33,20 +33,12 @@ directory kibana_path_base do
   recursive true
 end
 
-git kibana_path_base do
+kibana_git kibana_path_base do
   repository node['kibana']['git']['url']
   reference node['kibana']['git']['reference']
   user kibana_user
   group kibana_group
   action :checkout
-end
-
-template '/etc/init.d/kibana' do
-  source 'kibana.init.erb'
-  user kibana_user
-  group kibana_group
-  mode 00755
-  notifies :restart, 'service[kibana]', :delayed
 end
 
 kibana_bundle kibana_path_base do
@@ -55,17 +47,7 @@ kibana_bundle kibana_path_base do
   action :install
 end
 
-template "#{kibana_path_base}/KibanaConfig.rb" do
-  source 'KibanaConfig.rb.erb'
-  user kibana_user
-  group kibana_group
-  mode 00600
-  notifies :restart, 'service[kibana]', :delayed
-end
-
-
-
 service 'kibana' do
-  supports :start => true, :restart => true, :stop => true, :status => true
-  action :nothing
+  supports :start => true, :stop => true, :restart => true, :status => true
+  action :restart
 end

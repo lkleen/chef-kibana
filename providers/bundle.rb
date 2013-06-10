@@ -8,11 +8,11 @@ action :install do
   Chef::Log.debug "cwd #{cwd}"
   Chef::Log.debug "user #{user}"
 
-  ENV['GEM_HOME'] = "/usr/local/rvm/gems/ruby-1.9.3-p429"
-  ENV['GEM_PATH'] = "/usr/local/rvm/gems/ruby-1.9.3-p429:/usr/local/rvm/gems/ruby-1.9.3-p429@global"
+  #ENV['GEM_HOME'] = "/usr/local/rvm/gems/ruby-1.9.3-p429"
+  #ENV['GEM_PATH'] = "/usr/local/rvm/gems/ruby-1.9.3-p429:/usr/local/rvm/gems/ruby-1.9.3-p429@global"
 
   commands = [
-      "gem install bundler",
+      #"gem install bundler",
       "echo \"installing bundles to $GEM_HOME\"",
       "bundle install",
   ]
