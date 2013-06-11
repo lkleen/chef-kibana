@@ -21,6 +21,14 @@ action :checkout do
     action :create
   end
 
+  template "#{dir}/KibanaConfig.rb" do
+    source 'KibanaConfig.rb.erb'
+    user user
+    group group
+    mode 00600
+    notifies :restart, 'service[kibana]', :delayed
+  end
+
   template '/etc/init.d/kibana' do
     source 'kibana.init.erb'
     user user
@@ -30,14 +38,6 @@ action :checkout do
         :cmd  => node['kibana']['ruby']['cmd'],
         :path => node['kibana']['path']['base']
     )
-    notifies :restart, 'service[kibana]', :delayed
-  end
-
-  template "#{dir}/KibanaConfig.rb" do
-    source 'KibanaConfig.rb.erb'
-    user user
-    group group
-    mode 00600
     notifies :restart, 'service[kibana]', :delayed
   end
 

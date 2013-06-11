@@ -1,7 +1,7 @@
 # currently only the root user is supported
 # since ruby don't want me to change it easily
-default['kibana']['user']         = 'root'
-default['kibana']['group']        = 'root'
+default['kibana']['user']         = 'kibana'
+default['kibana']['group']        = 'kibana'
 
 default['kibana']['path']['base'] = '/opt/kibana'
 default['kibana']['path']['rvm']  = node['rvm']['root_path']

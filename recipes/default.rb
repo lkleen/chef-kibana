@@ -14,6 +14,11 @@ groups = [
     'root'
 ]
 
+user kibana_user do
+  home kibana_path_base
+  action :create
+end
+
 groups.each do |group|
   group group do
     members [kibana_user]
