@@ -4,10 +4,6 @@ action :install do
   group = new_resource.group
   user = new_resource.user
 
-  Chef::Log.debug "group #{group}"
-  Chef::Log.debug "cwd #{cwd}"
-  Chef::Log.debug "user #{user}"
-
   commands = [
       "/usr/local/rvm/bin/rvm reset"
   ]

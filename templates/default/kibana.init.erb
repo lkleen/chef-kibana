@@ -6,19 +6,19 @@
 
 case "$1" in
     start)
-        /usr/local/rvm/bin/ruby-1.9.3-p327 -C/opt/kibana kibana-service.rb start
+        <%= @cmd %> -C<%= @path %> kibana-service.rb start
         exit $?
         ;;
     stop)
-        /usr/local/rvm/bin/ruby-1.9.3-p327 -C/opt/kibana kibana-service.rb stop
+        <%= @cmd %> -C<%= @path %> kibana-service.rb stop
         exit $?
         ;;
     restart)
-        /usr/local/rvm/bin/ruby-1.9.3-p327 -C/opt/kibana kibana-service.rb restart
+        <%= @cmd %> -C<%= @path %> kibana-service.rb restart
         exit $?
         ;;
     status)
-        /usr/local/rvm/bin/ruby-1.9.3-p327 -C/opt/kibana kibana-service.rb status
+        <%= @cmd %> -C<%= @path %> kibana-service.rb status
         exit $?
         ;;
     *)

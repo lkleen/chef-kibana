@@ -26,6 +26,10 @@ action :checkout do
     user user
     group group
     mode 00755
+    variables(
+        :cmd  => node['kibana']['ruby']['cmd'],
+        :path => node['kibana']['path']['base']
+    )
     notifies :restart, 'service[kibana]', :delayed
   end
 
