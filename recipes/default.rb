@@ -47,8 +47,8 @@ kibana_git kibana_path_base do
 end
 
 kibana_bundle kibana_path_base do
-  user kibana_user
-  group kibana_group
+  user 'root'
+  group 'root'
   action :install
 end
 
