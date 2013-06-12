@@ -5,6 +5,7 @@ action :checkout do
   dir = new_resource.dir
   user = new_resource.user
   group = new_resource.group
+  log_dir = new_resource.log_dir
 
   git dir do
     repository new_resource.repository
@@ -12,6 +13,13 @@ action :checkout do
     user user
     group group
     action :checkout
+  end
+
+  directory log_dir do
+    user user
+    group group
+    mode 00755
+    action :create
   end
 
   directory "#{dir}/tmp" do

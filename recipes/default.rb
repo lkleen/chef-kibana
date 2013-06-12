@@ -7,6 +7,7 @@ package 'git'
 kibana_group     = node['kibana']['group']
 kibana_user      = node['kibana']['user']
 kibana_path_base = node['kibana']['path']['base']
+kibana_path_logs = node['kibana']['path']['logs']
 
 groups = [
     kibana_group,
@@ -39,10 +40,11 @@ directory kibana_path_base do
 end
 
 kibana_git kibana_path_base do
-  repository node['kibana']['git']['url']
-  reference node['kibana']['git']['reference']
   user kibana_user
   group kibana_group
+  log_dir kibana_path_logs
+  repository node['kibana']['git']['url']
+  reference node['kibana']['git']['reference']
   action :checkout
 end
 

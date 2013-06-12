@@ -5,9 +5,10 @@ default['kibana']['group']        = 'kibana'
 
 default['kibana']['path']['base'] = '/opt/kibana'
 default['kibana']['path']['rvm']  = node['rvm']['root_path']
+default['kibana']['path']['logs']  = '/var/log/kibana'
 
 default['kibana']['git']['url']       = 'https://github.com/lkleen/Kibana.git'
-default['kibana']['git']['reference'] = '0.2.3'
+default['kibana']['git']['reference'] = '0.2.4'
 
 default['kibana']['host'] = '0.0.0.0'
 default['kibana']['port'] = 5601
